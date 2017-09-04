@@ -1,6 +1,6 @@
 import scrapy
 from math import ceil
-from urllib import parse
+import urlparse as parse
 from holvoo_spider.items import Article
 
 
@@ -23,7 +23,7 @@ class ArticlesSpider(scrapy.Spider):
         exp = r'jpage\.init\(\'(\d+)\',\s\'(\d+)\'\)'
         total, page_size = list(map(int, script_tags.re(exp)))
 
-        for pn in range(0, ceil(total / page_size)):
+        for pn in range(0, int(ceil(total / page_size))):
             list_url = '{url}&pn={pn}'.format(url=response.url, pn=pn)
             yield response.follow(list_url, self.parse_list)
 

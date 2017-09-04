@@ -1,5 +1,5 @@
 import scrapy
-from urllib import parse
+import urlparse as parse
 from holvoo_spider.items import Article
 
 
